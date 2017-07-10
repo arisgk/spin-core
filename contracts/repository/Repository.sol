@@ -1,15 +1,15 @@
 pragma solidity ^0.4.0;
 
-import "node_modules/zeppelin-solidity/contracts/ownsership/Ownable.sol";
-import "node_modules/zeppelin-solidity/contracts/token/StandardToken.sol";
+import "../../node_modules/zeppelin-solidity/contracts/ownership/Ownable.sol";
+import "../../node_modules/zeppelin-solidity/contracts/token/StandardToken.sol";
 
 
-contract Repository is Ownable(msg.sender) {
+contract Repository is Ownable {
     uint256 public price;
     mapping (address => bool) purchased;
     StandardToken token;
 
-    function Repository(address _tokenAddress, uint256 _balance, uint256 _price) {
+    function Repository(address _tokenAddress, uint256 _price) {
         token = StandardToken(_tokenAddress);
         price = _price;
     }

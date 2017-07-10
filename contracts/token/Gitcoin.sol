@@ -1,6 +1,6 @@
 pragma solidity ^0.4.0;
 
-import "node_modules/zeppelin-solidity/contracts/token/StandardToken.sol";
+import "../../node_modules/zeppelin-solidity/contracts/token/StandardToken.sol";
 
 
 contract Gitcoin is StandardToken {
