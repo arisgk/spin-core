@@ -18,17 +18,22 @@ contract Repository is Ownable {
         price = _price;
     }
 
-    function purchase() {
+    function purchase() payable {
         token.transferFrom(msg.sender, this, price);
         purchased[msg.sender] = true;
     }
 
-    function pay(address _address, uint256 _value) onlyOwner {
+    // Approve contracts so that they can use transferFrom to withdraw
+    function approvePaymentToContract(address _address, uint256 _value) payable onlyOwner {
         token.approve(_address, _value);
-        token.transferFrom(this, _address, _value);
     }
 
-    function deposit(uint256 _value) onlyOwner {
+    // Must only be used with externally owned accounts
+    function payEOA(address _address, uint256 _value) payable onlyOwner {
+        token.transfer(_address, _value);
+    }
+
+    function deposit(uint256 _value) payable onlyOwner {
         token.transferFrom(msg.sender, this, _value);
     }
 
